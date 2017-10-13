@@ -15,10 +15,10 @@ public class Game {
 
 
     public Game(){
-        // initialize a new game such that each column can store cards
-        buildDeck();
-        shuffle();
-        dealFour();
+        cols.add( new ArrayList<Card>(13));
+        cols.add( new ArrayList<Card>(13));
+        cols.add( new ArrayList<Card>(13));
+        cols.add( new ArrayList<Card>(13));
     }
 
     public void buildDeck() {
@@ -46,7 +46,7 @@ public class Game {
     }
 
     private boolean columnHasCards(int columnNumber) {
-        // check indicated column for number of cards; if no cards return false, otherwise return true
+
         return false;
     }
 
