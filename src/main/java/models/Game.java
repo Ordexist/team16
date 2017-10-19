@@ -37,21 +37,27 @@ public class Game {
 
     public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
-        for(int i = 0; i < 4; i++){
-            addCardToCol(i, deck.remove(0));
+        if(deck.size() >= 4) {
+            for (int i = 0; i < 4; i++) {
+                addCardToCol(i, deck.remove(0));
+            }
         }
     }
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
-        if (columnHasCards(columnNumber)) {
+        if(columnHasCards(columnNumber)){
             removeCardFromCol(columnNumber);
         }
     }
 
     private boolean columnHasCards(int columnNumber) {
-
-        return false;
+        if(cols.get(columnNumber).size() > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     private Card getTopCard(int columnNumber) {
@@ -61,6 +67,12 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
+        if(columnFrom < 4 && columnTo < 4 && columnHasCards(columnFrom)) {
+            Card topCard = getTopCard(columnFrom);
+
+            remove(columnFrom);
+            addCardToCol(columnTo, topCard);
+        }
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
