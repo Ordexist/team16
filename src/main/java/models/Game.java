@@ -12,7 +12,7 @@ public class Game {
     public java.util.List<Card> deck = new ArrayList<>();
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
-    int points = 0;
+    public int points = 0;
 
     public Game(){
         cols.add( new ArrayList<Card>(13));

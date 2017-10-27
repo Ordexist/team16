@@ -16,3 +16,12 @@ font-weight: bold;
 width: 100px;
 background-color:#F0F0F0;
 }
+
+#points{
+text-align: center;
+color: blue;
+}
+
+#pointsBox{
+max-width: 100px;
+}
