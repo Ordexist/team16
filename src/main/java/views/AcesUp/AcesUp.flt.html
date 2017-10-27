@@ -2,7 +2,10 @@
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 
 <body>
-
+<div id="pointsBox">
+    <label for="points">Current Points:</label>
+    <p id="points"></p>
+</div>
 <table>
     <tr>
       <td class="columnOfCards" id="c0">
@@ -120,8 +123,7 @@ $( '.columnOfCards .cardLocation' ).html("");
         $( '#c3 .l'+key ).html(val.value + val.suit);
     });
 
-
-
+ document.getElementById("points").innerHTML = game.points;
 }
 
 // Calls ApplicationController.gameGet()

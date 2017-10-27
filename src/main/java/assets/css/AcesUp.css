@@ -53,3 +53,13 @@ margin-right: auto;
 width: 110px;
 background-color:#F0F0F0;
 }
+
+#points{
+text-align: center;
+color: blue;
+}
+
+#pointsBox{
+max-width: 100px;
+}
+
