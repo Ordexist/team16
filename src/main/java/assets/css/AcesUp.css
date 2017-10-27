@@ -31,7 +31,7 @@ div#mainHead{
   height: 75px;
   font-size: 30px;
   float:center;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 tr{
@@ -60,6 +60,7 @@ color: blue;
 }
 
 #pointsBox{
-max-width: 100px;
+max-width: 200px;
+float:center;
 }
 
