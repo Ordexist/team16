@@ -46,7 +46,20 @@ public class Game {
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
-        if(columnHasCards(columnNumber)){
+        int canRemove = 0;
+
+        for(int i = 0; i < this.cols.size(); i++){                    //check the card to remove against all other top cards
+            if(columnHasCards(i) && columnHasCards(columnNumber)){
+                Card cardToRemove = getTopCard(columnNumber);
+                Card cardToCheck = getTopCard(i);
+
+                if(i != columnNumber && cardToRemove.suit == cardToCheck.suit && cardToRemove.value < cardToCheck.value){  //if a higher card with matching suit
+                    canRemove = 1;                                        //set remove flag
+                }
+            }
+        }
+
+        if(canRemove == 1){           //remove card if flag is set
             removeCardFromCol(columnNumber);
             points++;
         }
@@ -68,10 +81,10 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-        if(columnFrom < 4 && columnTo < 4 && columnHasCards(columnFrom)) {
+        if(columnFrom < 4 && columnTo < 4 && columnHasCards(columnFrom) == true && columnHasCards(columnTo) == false) {
             Card topCard = getTopCard(columnFrom);
 
-            remove(columnFrom);
+            removeCardFromCol(columnFrom);
             addCardToCol(columnTo, topCard);
         }
     }
