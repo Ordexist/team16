@@ -20,6 +20,9 @@ import models.Game;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import com.google.inject.Singleton;
 import ninja.params.PathParam;
@@ -32,6 +35,7 @@ public class ApplicationController {
     }
     
     public Result gameGet(){
+        JOptionPane.showMessageDialog(null, "Welcome to Aces up!\nHit OK to start", "Move Invalid", JOptionPane.ERROR_MESSAGE);
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
