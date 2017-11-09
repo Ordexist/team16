@@ -3,6 +3,9 @@ package models;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
@@ -41,18 +44,20 @@ public class Game {
             for (int i = 0; i < 4; i++) {
                 addCardToCol(i, deck.remove(0));
             }
+        } else {
+            final JDialog dialog = new JDialog();
+            dialog.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(dialog, "No more cards in the Deck!", "No more cards!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
         int canRemove = 0;
-
         for(int i = 0; i < this.cols.size(); i++){                    //check the card to remove against all other top cards
             if(columnHasCards(i) && columnHasCards(columnNumber)){
                 Card cardToRemove = getTopCard(columnNumber);
                 Card cardToCheck = getTopCard(i);
-
                 if(i != columnNumber && cardToRemove.suit == cardToCheck.suit && cardToRemove.value < cardToCheck.value){  //if a higher card with matching suit
                     canRemove = 1;                                        //set remove flag
                 }
@@ -81,11 +86,18 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-        if(columnFrom < 4 && columnTo < 4 && columnHasCards(columnFrom) == true && columnHasCards(columnTo) == false) {
-            Card topCard = getTopCard(columnFrom);
-
+        Card topCard = getTopCard(columnFrom);
+        if(columnFrom < 4 && columnTo < 4 && columnHasCards(columnFrom) == true && columnHasCards(columnTo) == false && topCard.getValue() == 14) {
             removeCardFromCol(columnFrom);
             addCardToCol(columnTo, topCard);
+        } else if( columnHasCards(columnTo) == true ){
+            final JDialog dialog = new JDialog();
+            dialog.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(dialog, "Can't move here!\nThere is already a card in column " + (columnTo + 1) + "!", "Move Invalid", JOptionPane.ERROR_MESSAGE);
+        } else if( topCard.getValue() != 14) {
+            final JDialog dialog = new JDialog();
+            dialog.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(dialog, "You can only move Aces to empty columns!", "Move Invalid", JOptionPane.ERROR_MESSAGE);
         }
     }
 

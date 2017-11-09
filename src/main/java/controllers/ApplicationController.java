@@ -20,6 +20,9 @@ import models.Game;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 import com.google.inject.Singleton;
 import ninja.params.PathParam;
@@ -32,6 +35,9 @@ public class ApplicationController {
     }
     
     public Result gameGet(){
+        final JDialog dialog = new JDialog();
+        dialog.setAlwaysOnTop(true);
+        JOptionPane.showMessageDialog(dialog, "Welcome to Aces up!\nHit OK to start", "Aces Up", JOptionPane.PLAIN_MESSAGE);
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
