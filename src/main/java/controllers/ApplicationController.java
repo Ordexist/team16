@@ -35,7 +35,7 @@ public class ApplicationController {
     }
     
     public Result gameGet(){
-        JOptionPane.showMessageDialog(null, "Welcome to Aces up!\nHit OK to start", "Move Invalid", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Welcome to Aces up!\nHit OK to start", "Move Invalid", JOptionPane.PLAIN_MESSAGE);
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
