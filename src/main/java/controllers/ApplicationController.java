@@ -21,7 +21,7 @@ import ninja.Context;
 import ninja.Result;
 import ninja.Results;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import com.google.inject.Singleton;
@@ -35,7 +35,9 @@ public class ApplicationController {
     }
     
     public Result gameGet(){
-        JOptionPane.showMessageDialog(null, "Welcome to Aces up!\nHit OK to start", "Move Invalid", JOptionPane.PLAIN_MESSAGE);
+        final JDialog dialog = new JDialog();
+        dialog.setAlwaysOnTop(true);
+        JOptionPane.showMessageDialog(dialog, "Welcome to Aces up!\nHit OK to start", "Aces Up", JOptionPane.PLAIN_MESSAGE);
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
