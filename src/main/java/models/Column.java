@@ -18,7 +18,7 @@ public class Column {
         }
     }
 
-    public Card getTopCard() {
+    public Card topCard() {
         return cards.get(size - 1);
     }
 

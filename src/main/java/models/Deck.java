@@ -8,7 +8,7 @@ public class Deck {
     public int size = 52;
 
     public Deck(){
-        for(int i = 2; i < 15; i++){
+        for(int i = 2; i < 15; i++) {
             cards.add(new Card(i,Suit.Clubs));
             cards.add(new Card(i,Suit.Hearts));
             cards.add(new Card(i,Suit.Diamonds));
@@ -23,7 +23,7 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
-    public Card getTopCard() {                     //decrements deck size and returns top card
+    public Card topCard() {                     //decrements deck size and returns top card
         size--;
         return(this.cards.get(size));
     }
