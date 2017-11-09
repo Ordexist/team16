@@ -39,8 +39,6 @@ public class ApplicationController {
         dialog.setAlwaysOnTop(true);
         JOptionPane.showMessageDialog(dialog, "Welcome to Aces up!\nHit OK to start", "Aces Up", JOptionPane.PLAIN_MESSAGE);
         Game g = new Game();
-        g.buildDeck();
-        g.shuffle();
         g.dealFour();
 
         return Results.json().render(g);
