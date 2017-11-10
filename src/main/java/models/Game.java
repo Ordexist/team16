@@ -59,6 +59,10 @@ public class Game {
                 dialog.setAlwaysOnTop(true);
                 JOptionPane.showMessageDialog(dialog, "You win!", "Congratulations!", JOptionPane.PLAIN_MESSAGE);
             }
+        } else {
+            final JDialog dialog = new JDialog();
+            dialog.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(dialog, "This card cannot be removed.", "Invalid!", JOptionPane.PLAIN_MESSAGE);
         }
     }
 
