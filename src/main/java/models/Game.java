@@ -54,6 +54,11 @@ public class Game {
         if(canRemove == 1) {           //remove card if flag is set
             cols.get(columnNumber).removeCard();
             points++;
+            if(points >= 48){
+                final JDialog dialog = new JDialog();
+                dialog.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(dialog, "You win!", "Congratulations!", JOptionPane.PLAIN_MESSAGE);
+            }
         }
     }
 
