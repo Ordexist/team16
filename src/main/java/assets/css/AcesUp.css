@@ -9,6 +9,9 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-color: 000000;
+  font-size: 14px;
+  font-family: Arial;
+  color: #ffffff;
 }
 
 main{
@@ -18,49 +21,168 @@ main{
 div#mainHead{
   width: 200px;
   font-weight: bold;
-  text-align: right;
+  text-align: center;
   font-size: 20px;
-  font-family: "Courier New";
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
   float: right;
   margin-right: 100px;
 }
 
 #dealButton{
-  align-items: right;
+  position:relative;
   width: 150px;
   height: 75px;
-  font-size: 30px;
-  float:center;
   margin-top: 50px;
+  background: #eb503b;
+  background-image: -webkit-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -moz-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -ms-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -o-linear-gradient(top, #eb503b, #c92b26);
+  background-image: linear-gradient(to bottom, #eb503b, #c92b26);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 40px;
+  padding: 10px 20px 10px 20px;
+  border: solid #8c1f1f 2px;
+  text-decoration: none;
+}
+
+#dealButton:hover {
+  background: #fc3c3c;
+  text-decoration: none;
+}
+
+#from_col, #to_col{
+  position:relative;
+  width: 100px;
+  background: #eb503b;
+  background-image: -webkit-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -moz-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -ms-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -o-linear-gradient(top, #eb503b, #c92b26);
+  background-image: linear-gradient(to bottom, #eb503b, #c92b26);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  border: solid #8c1f1f 2px;
+  color:#ffffff;
+  text-decoration: none;
+  font-family: Arial;
+}
+
+#from_col:hover, #to_col:hover{
+  background: #fc3c3c;
+  text-decoration: none;
+}
+
+#Remove1, #Remove2, #remove3, #remove4{
+  position:relative;
+  width: 110px;
+  height: 20px;
+  margin-top: 10px;
+  right:2px;
+  background: #eb503b;
+  background-image: -webkit-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -moz-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -ms-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -o-linear-gradient(top, #eb503b, #c92b26);
+  background-image: linear-gradient(to bottom, #eb503b, #c92b26);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 1px 10px 1px 10px;
+  border: solid #8c1f1f 2px;
+  text-decoration: none;
+}
+
+#moveButton{
+  position:relative;
+  width: 110px;
+  height: 20px;
+  margin-top: 10px;
+  left:25px;
+  background: #eb503b;
+  background-image: -webkit-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -moz-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -ms-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -o-linear-gradient(top, #eb503b, #c92b26);
+  background-image: linear-gradient(to bottom, #eb503b, #c92b26);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 1px 10px 1px 10px;
+  border: solid #8c1f1f 2px;
+  text-decoration: none;
+}
+
+#Remove1:hover, #Remove2:hover, #remove3:hover, #remove4:hover, #moveButton:hover{
+  background: #fc3c3c;
+  text-decoration: none;
 }
 
 tr{
-width:500px;
+  width:500px;
 }
 
 
 
 td{
-width:125px;
-height:20px;
-text-align:center;
-margin-left: auto;
-margin-right: auto;
+  width:125px;
+  height:20px;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  font-family: Arial;
+  color: black;
 }
 
 
 .cardLocation{
-width: 110px;
-background-color:#F0F0F0;
+  width: 110px;
+  background-color:#F0F0F0;
 }
 
 #points{
-text-align: center;
-color: blue;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 36px;
 }
 
 #pointsBox{
-max-width: 200px;
-float:center;
+  float:center;
+  background: #eb503b;
+  background-image: -webkit-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -moz-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -ms-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -o-linear-gradient(top, #eb503b, #c92b26);
+  background-image: linear-gradient(to bottom, #eb503b, #c92b26);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  border: solid #8c1f1f 2px;
+  text-decoration: none;
 }
 
