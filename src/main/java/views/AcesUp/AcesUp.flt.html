@@ -85,14 +85,14 @@
               <label for="points">Current Score:</label>
               <p id="points"></p>
           </div>
+          <br />
+          <p id="errorMessage">Welcome to Ace's Up!</p>
           <button id="dealButton">Deal</button>
       </div>
 
 </table>
 
-
-
-<BR>
+<br/>
 <select id="from_col">
     <option value="0">Column 1</option>
     <option value="1">Column 2</option>
@@ -116,22 +116,39 @@ var game;
 function display(game) {
 console.log(game);
 
+setTimeout(function() {
+  if (game.wonGame == 1){
+    document.getElementById("errorMessage").innerHTML = "You Won!!";
+  }
+}, 75);
+
+
+function cardInfo(info, val){
+  if(val.value == 11){
+    return $( info ).html("J " + val.suit);
+  } else if(val.value == 12){
+    return $( info ).html("Q " + val.suit );
+  } else if(val.value == 13){
+    return $( info ).html("K " + val.suit );
+  } else if(val.value == 14){
+    return $( info ).html("A " + val.suit);
+  } else {
+    return $( info ).html(val.value + " " + val.suit);
+  }
+}
+
 $( '.columnOfCards .cardLocation' ).html("");
-
-    $.each(game.cols[0].cards, function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + val.suit);
+  $.each(game.cols[0].cards, function( key, val ) {
+      cardInfo('#c0 .l'+key, val);
     });
-
  $.each(game.cols[1].cards, function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + val.suit);
+      cardInfo('#c1 .l'+key, val);
     });
-
  $.each(game.cols[2].cards, function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + val.suit);
+      cardInfo('#c2 .l'+key, val);
     });
-
  $.each(game.cols[3].cards, function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + val.suit);
+      cardInfo('#c3 .l'+key, val);
     });
 
  document.getElementById("points").innerHTML = game.points;
@@ -144,6 +161,8 @@ game = data;
 });
 
 
+var count = 0;
+
 $("#dealButton").click(function(){
 $.ajax({
   type: "POST",
@@ -155,6 +174,12 @@ $.ajax({
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
+count++;
+if(count < 13){
+  document.getElementById("errorMessage").innerHTML = "Dealt Cards";
+} else {
+  document.getElementById("errorMessage").innerHTML = "Out of Cards!";
+}
 });
 
 
@@ -169,21 +194,33 @@ display(data);},
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
-
 }
 
+function removedNotice(){
+  setTimeout(function() {
+    if (game.canRemove == 1){
+      document.getElementById("errorMessage").innerHTML = "Removed Card";
+    } else if (game.canRemove == 0){
+      document.getElementById("errorMessage").innerHTML = "Can't remove card!";
+    }
+  }, 75);
+}
 
 $("#Remove1").click(function(){
-    removeCard(0);
+  removeCard(0);
+  removedNotice();
 });
 $("#Remove2").click(function(){
-    removeCard(1);
+  removeCard(1);
+  removedNotice();
 });
 $("#Remove3").click(function(){
-    removeCard(2);
+  removeCard(2);
+  removedNotice();
 });
 $("#Remove4").click(function(){
-    removeCard(3);
+  removeCard(3);
+  removedNotice();
 });
 
 
@@ -200,12 +237,21 @@ $.ajax({
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
+
+setTimeout(function() {
+  if(game.canMove == 0){
+      document.getElementById("errorMessage").innerHTML = "Can't move card there!";
+  } else if(game.canMove == 1){
+      document.getElementById("errorMessage").innerHTML = "Moved Card";
+  } else if(game.canMove == 2){
+      document.getElementById("errorMessage").innerHTML = "You can only move Aces!";
+  } else if(game.canMove == 3){
+      document.getElementById("errorMessage").innerHTML = "Can't move from an empty column!";
+  }
+}, 75);
+
 });
 
-
 </script>
-
-
-
 </body>
 </html>

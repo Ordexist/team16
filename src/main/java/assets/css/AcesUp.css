@@ -18,6 +18,7 @@ main{
   width: 100%
 }
 
+
 div#mainHead{
   width: 200px;
   font-weight: bold;
@@ -34,7 +35,7 @@ div#mainHead{
   position:relative;
   width: 150px;
   height: 75px;
-  margin-top: 50px;
+  margin-top: 20px;
   background: #eb503b;
   background-image: -webkit-linear-gradient(top, #eb503b, #c92b26);
   background-image: -moz-linear-gradient(top, #eb503b, #c92b26);
@@ -138,11 +139,9 @@ tr{
   width:500px;
 }
 
-
-
 td{
   width:125px;
-  height:20px;
+  height:25px;
   text-align:center;
   margin-left: auto;
   margin-right: auto;
@@ -166,6 +165,16 @@ td{
   font-size: 36px;
 }
 
+#errorMessage{
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 1px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  height: 60px;
+  font-size: 20px;
+}
+
 #pointsBox{
   float:center;
   background: #eb503b;
@@ -184,5 +193,5 @@ td{
   padding: 10px 20px 10px 20px;
   border: solid #8c1f1f 2px;
   text-decoration: none;
+  height: 100px;
 }
-

@@ -33,11 +33,12 @@ public class ApplicationController {
     public Result index() {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
-    
+
     public Result gameGet(){
-        final JDialog dialog = new JDialog();
-        dialog.setAlwaysOnTop(true);
-        JOptionPane.showMessageDialog(dialog, "Welcome to Aces up!\nHit OK to start", "Aces Up", JOptionPane.PLAIN_MESSAGE);
+
+        int gameMode;
+        Object[] options = {"Regular", "Aces", "Spanish"};
+
         Game g = new Game();
         g.dealFour();
 
