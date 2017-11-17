@@ -27,20 +27,30 @@ import javax.swing.JOptionPane;
 import com.google.inject.Singleton;
 import ninja.params.PathParam;
 
+
+
 @Singleton
 public class ApplicationController {
+
+  public static Object[] options = {"Regular", "Aces", "Spanish"};
+  public static Object GameMode = null;
 
     public Result index() {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
 
     public Result gameGet(){
-
-        int gameMode;
-        Object[] options = {"Regular", "Aces", "Spanish"};
-
-        Game g = new Game();
-        g.dealFour();
+        GameMode = JOptionPane.showInputDialog(null, "Select a Game Mode", "Game Modes", JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        Game g = null;
+        if(GameMode == "Spanish"){
+            JOptionPane message = new JOptionPane("Spanish function not yet implimented!");
+            JDialog dialog = message.createDialog("Success!");
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        } else {
+            g = new Game();
+            g.dealFour();
+        }
 
         return Results.json().render(g);
     }
