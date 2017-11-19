@@ -54,6 +54,29 @@ div#mainHead{
   text-decoration: none;
 }
 
+#OptionButtonR, #OptionButtonS, #OptionButtonA{
+  position:relative;
+  width: 200px;
+  height: 100px;
+  margin-top: 20px;
+  background: #eb503b;
+  background-image: -webkit-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -moz-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -ms-linear-gradient(top, #eb503b, #c92b26);
+  background-image: -o-linear-gradient(top, #eb503b, #c92b26);
+  background-image: linear-gradient(to bottom, #eb503b, #c92b26);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 40px;
+  padding: 10px 20px 10px 20px;
+  border: solid #8c1f1f 2px;
+  text-decoration: none;
+}
+
 #dealButton:hover {
   background: #fc3c3c;
   text-decoration: none;
@@ -135,8 +158,20 @@ div#mainHead{
   text-decoration: none;
 }
 
+h1{
+  text-align: center;
+}
+
+div#tw{
+  width:800px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
 tr{
   width:500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 td{
@@ -194,120 +229,4 @@ td{
   border: solid #8c1f1f 2px;
   text-decoration: none;
   height: 100px;
-}
-
-
-
-
-/* Initial Pop-up options box */
-h1 {
-	text-align: center;
-	font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
-	color: #333;
-	text-shadow: 0 1px 0 #fff;
-	margin: 50px 0;
-}
-
-#wrapper {
-	width: 100px;
-	margin: 0 auto;
-	background: #fff;
-	padding: 20px;
-	border: 10px solid #aaa;
-	border-radius: 15px;
-	background-clip: padding-box;
-	text-align: center;
-}
-
-.button {
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 13px;
-	padding: 5px 10px;
-	border: 1px solid #aaa;
-	background-color: #eee;
-	background-image: linear-gradient(top, #fff, #f0f0f0);
-	border-radius: 2px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-	color: #666;
-	text-decoration: none;
-	text-shadow: 0 1px 0 #fff;
-	cursor: pointer;
-	transition: all 0.2s ease-out;
-  &:hover {
-    border-color: #999;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-  }
-  &:active {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.25) inset;
-  }
-}
-
-.overlay {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,0.5);
-	transition: opacity 200ms;
-  visibility: hidden;
-	opacity: 0;
-	&.light {
-    background: rgba(255,255,255,0.5);
-  }
-  .cancel {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    cursor: default;
-  }
-  &:target {
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-.popup {
-	margin: 75px auto;
-	padding: 20px;
-	background: #fff;
-	border: 1px solid #666;
-	width: 300px;
-	box-shadow: 0 0 50px rgba(0,0,0,0.5);
-	position: relative;
-  .light & {
-    border-color: #aaa;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-  }
-  h2 {
-    margin-top: 0;
-    color: #666;
-    font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
-  }
-  .close {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 20px;
-    right: 20px;
-    opacity: 0.8;
-    transition: all 200ms;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #666;
-    &:hover {
-      opacity: 1;
-    }
-  }
-  .content {
-    max-height: 400px;
-    overflow: auto;
-  }
-  p {
-    margin: 0 0 1em;
-    &:last-child {
-      margin: 0;
-    }
-  }
 }

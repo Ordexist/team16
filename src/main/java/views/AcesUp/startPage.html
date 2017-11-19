@@ -1,0 +1,67 @@
+<link href="/assets/css/AcesUp.css" rel="stylesheet">
+<script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+
+
+<body>
+  <br/><br/><br/>
+  <h1>Please choose a game mode!</h1>
+<div id="tw">
+  <button id="OptionButtonR">Regular</button>
+  <button id="OptionButtonA">Aces</button>
+  <button id="OptionButtonS">Spanish</button>
+</div>
+
+<script>
+
+var GameMode;
+
+function getGameMode(){
+  return GameMode;
+}
+
+
+// function gameMode(GameMode){
+// }
+
+$("#OptionButtonR").click(function(){
+  //gameMode(0);
+  $.ajax({
+  type: "POST",
+  url: "/gameMode/"+0,
+  data: {'value' : 0},
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  });
+  window.open('AcesUp.flt.html','_self',false);
+
+});
+
+$("#OptionButtonA").click(function(){
+  //gameMode(1);
+  $.ajax({
+  type: "POST",
+  url: "/gameMode/"+1
+  data: {'value' : 1},
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  });
+  window.open('AcesUp.flt.html','_self',false);
+});
+
+$("#OptionButtonS").click(function(){
+  //gameMode(2);
+  $.ajax({
+  type: "POST",
+  url: "/gameMode/"+2,
+  data: {'value' : 2},
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  });
+  window.open('AcesUp.flt.html','_self',false);
+});
+
+</script>
+</body>

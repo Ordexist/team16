@@ -1,19 +1,3 @@
-/**
- * Copyright (C) 2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package controllers;
 
 import models.Game;
@@ -27,30 +11,19 @@ import javax.swing.JOptionPane;
 import com.google.inject.Singleton;
 import ninja.params.PathParam;
 
-
-
 @Singleton
 public class ApplicationController {
-
-  public static Object[] options = {"Regular", "Aces", "Spanish"};
-  public static Object GameMode = null;
-
+    public int GameMode;
     public Result index() {
+        return Results.html().template("views/AcesUp/startPage.html");
+    }
+    public Result mainIndex() {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
 
     public Result gameGet(){
-        GameMode = JOptionPane.showInputDialog(null, "Select a Game Mode", "Game Modes", JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-        Game g = null;
-        if(GameMode == "Spanish"){
-            JOptionPane message = new JOptionPane("Spanish function not yet implimented!");
-            JDialog dialog = message.createDialog("Success!");
-            dialog.setAlwaysOnTop(true);
-            dialog.setVisible(true);
-        } else {
-            g = new Game();
-            g.dealFour();
-        }
+        Game g = new Game();
+        g.dealFour();
 
         return Results.json().render(g);
     }
@@ -69,6 +42,11 @@ public class ApplicationController {
 
     public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g){
         g.move(colFrom,colTo);
+        return Results.json().render(g);
+    }
+
+    public Result gameMode(Context context, @PathParam("GameMode") int gameMode, Game g){
+        g.theGameMode(gameMode);
         return Results.json().render(g);
     }
 

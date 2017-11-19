@@ -1,6 +1,7 @@
 package models;
 
 import controllers.ApplicationController;
+import models.Deck;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -11,8 +12,11 @@ import javax.swing.JOptionPane;
 /**
  * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
  */
-public class Game {
 
+
+
+public class Game {
+    public int GameMode;  /*GameModes -- 0-Regular, 1-Aces, 2-Spanish, 3-NoSelection*/
     public Deck deck = new Deck();
 
     public java.util.List<Column> cols = new ArrayList<>(4);
@@ -35,6 +39,10 @@ public class Game {
                 cols.get(i).addCard(deck.topCard());
             }
         }
+    }
+
+    public void theGameMode(int gameMode){
+      GameMode = gameMode;
     }
 
     public void remove(int columnNumber) {
@@ -63,25 +71,26 @@ public class Game {
   }
 
     public void move(int columnFrom, int columnTo) {
-
-      if(ApplicationController.GameMode == "Regular"){
+      if(GameMode == 0){
         // remove the top card from the columnFrom column, add it to the columnTo column
         if(cols.get(columnFrom).hasCards() == true) {
             Card tempCard = cols.get(columnFrom).topCard();
 
-                if(cols.get(columnTo).hasCards() == false) {
-                    cols.get(columnFrom).removeCard();
-                    cols.get(columnTo).addCard(tempCard);
-                    canMove = 1;
-                }
-                else {                                        //moving card to column that is not empty, error
-                  canMove = 0;
-                }
+            if(cols.get(columnTo).hasCards() == false) {
+                cols.get(columnFrom).removeCard();
+                cols.get(columnTo).addCard(tempCard);
+                canMove = 1;
+            } else {                                           //moving card that is not an ace, error
+                canMove = 0;
+            }
         }
         else {                                               //moving card from an empty column, error
           canMove = 3;
         }
-      } else if(ApplicationController.GameMode == "Aces"){
+      }
+
+
+      if(GameMode == 1){
         // remove the top card from the columnFrom column, add it to the columnTo column
         if(cols.get(columnFrom).hasCards() == true) {
             Card tempCard = cols.get(columnFrom).topCard();
@@ -95,12 +104,10 @@ public class Game {
                 else {                                        //moving card to column that is not empty, error
                   canMove = 0;
                 }
-            }
-            else {                                           //moving card that is not an ace, error
+            } else {                                           //moving card that is not an ace, error
                 canMove = 2;
             }
-        }
-        else {                                               //moving card from an empty column, error
+        } else {                                               //moving card from an empty column, error
           canMove = 3;
         }
       }
