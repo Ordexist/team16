@@ -94,24 +94,31 @@
 </table>
 
 <br/>
-<select id="from_col">
-    <option value="0">Column 1</option>
-    <option value="1">Column 2</option>
-    <option value="2">Column 3</option>
+<div id="moveUI">
+  <select id="from_col">
+      <option value="0">Column 1</option>
+      <option value="1">Column 2</option>
+      <option value="2">Column 3</option>
     <option value="3">Column 4</option>
-</select>
-To:
-<select id="to_col">
-    <option value="0">Column 1</option>
-    <option value="1">Column 2</option>
-    <option value="2">Column 3</option>
-    <option value="3">Column 4</option>
-</select>
+  </select>
+    To:
+    <select id="to_col">
+      <option value="0">Column 1</option>
+      <option value="1">Column 2</option>
+      <option value="2">Column 3</option>
+      <option value="3">Column 4</option>
+    </select>
 
-<button id="moveButton">Move</button>
+  <button id="moveButton">Move</button>
+</div>
 
+
+
+<div id="refreshButtons">
+  <button id="newGame">New Game</button>
+  <button id="changeGameMode">Change Game Mode</button>
+</div>
 <script>
-
 
 var game;
 
@@ -156,12 +163,11 @@ $( '.columnOfCards .cardLocation' ).html("");
  document.getElementById("points").innerHTML = game.points;
 }
 
-// Calls ApplicationController.gameGet()
+//Calls ApplicationController.grabGame()
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
 game = data;
 });
-
 
 var count = 0;
 
@@ -184,8 +190,6 @@ if(count < 13){
 }
 });
 
-var game;
-
 function removeCard(colNumber){
 $.ajax({
 type: "POST",
@@ -205,24 +209,26 @@ function removedNotice(){
       document.getElementById("errorMessage").innerHTML = "Removed Card";
     } else if (game.canRemove == 0){
       document.getElementById("errorMessage").innerHTML = "Can't remove card!";
+    } else if (game.canRemove == 2){
+      document.getElementById("errorMessage").innerHTML = "Column is Empty!";
     }
   }, 75);
 }
 
 $("#Remove1").click(function(){
-  //removeCard(0);
+  removeCard(0);
   removedNotice();
 });
 $("#Remove2").click(function(){
-  //removeCard(1);
+  removeCard(1);
   removedNotice();
 });
 $("#Remove3").click(function(){
-  //removeCard(2);
+  removeCard(2);
   removedNotice();
 });
 $("#Remove4").click(function(){
-  //removeCard(3);
+  removeCard(3);
   removedNotice();
 });
 
@@ -252,8 +258,18 @@ setTimeout(function() {
       document.getElementById("errorMessage").innerHTML = "Can't move from an empty column!";
   }
 }, 75);
-
 });
+
+
+$("#newGame").click(function(){
+    location.reload();
+});
+
+$("#changeGameMode").click(function(){
+    window.open('/','_self',false);
+});
+
+
 
 </script>
 </body>

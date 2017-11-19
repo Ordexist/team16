@@ -4,6 +4,9 @@ import models.Game;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -13,20 +16,28 @@ import ninja.params.PathParam;
 
 @Singleton
 public class ApplicationController {
-    public int GameMode;
+    public static int gameModeNum;
     public Result index() {
         return Results.html().template("views/AcesUp/startPage.html");
     }
     public Result mainIndex() {
+        Game.updateGameMode();
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
 
-    public Result gameGet(){
-        Game g = new Game();
-        g.dealFour();
+    public static Game newGame;
 
-        return Results.json().render(g);
+    public Result gameGet(){
+        newGame = new Game();
+        newGame.dealFour();
+
+        return Results.json().render(newGame);
     }
+
+    public Result grabGame(){
+        return Results.json().render(newGame);
+    }
+
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
@@ -45,9 +56,8 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    public Result gameMode(Context context, @PathParam("GameMode") int gameMode, Game g){
-        g.theGameMode(gameMode);
+    public Result gameMode(Context context, @PathParam("modeNumber") int gameModeNumber, Game g){
+        gameModeNum = gameModeNumber;
         return Results.json().render(g);
     }
-
 }
