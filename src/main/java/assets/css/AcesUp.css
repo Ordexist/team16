@@ -108,7 +108,7 @@ div#mainHead{
   position:relative;
   width: 110px;
   height: 20px;
-  margin-top: 155px;
+  margin-top: 157px;
   right:2px;
   background: #eb503b;
   background-image: -webkit-linear-gradient(top, #eb503b, #c92b26);
@@ -268,7 +268,7 @@ td{
 
 .cardLocation:hover{
   z-index: 9999;
-  zoom: 120%;
+  zoom: 105%;
 }
 
 #points{
