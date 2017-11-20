@@ -266,6 +266,11 @@ td{
   position: absolute;
 }
 
+.cardLocation:hover{
+  z-index: 9999;
+  zoom: 120%;
+}
+
 #points{
   text-align: center;
   color: white;
