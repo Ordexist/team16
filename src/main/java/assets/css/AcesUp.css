@@ -76,7 +76,7 @@ div#mainHead{
   text-decoration: none;
 }
 
-#dealButton:hover {
+#dealButton:hover, #OptionButtonA:hover, #OptionButtonR:hover, #OptionButtonS:hover, #newGame:hover, #changeGameMode:hover {
   background: #fc3c3c;
   text-decoration: none;
 }
