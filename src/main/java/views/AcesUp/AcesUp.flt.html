@@ -134,15 +134,15 @@ setTimeout(function() {
 
 function cardInfo(info, val){
   if(val.value == 11){
-    return $( info ).html("J " + val.suit);
+    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
   } else if(val.value == 12){
-    return $( info ).html("Q " + val.suit );
+    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
   } else if(val.value == 13){
-    return $( info ).html("K " + val.suit );
+    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
   } else if(val.value == 14){
-    return $( info ).html("A " + val.suit);
+    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
   } else {
-    return $( info ).html(val.value + " " + val.suit);
+    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
   }
 }
 
