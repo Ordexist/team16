@@ -1,25 +1,12 @@
-/**
- * Copyright (C) 2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package controllers;
 
 import models.Game;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -29,20 +16,28 @@ import ninja.params.PathParam;
 
 @Singleton
 public class ApplicationController {
-
+    public static int gameModeNum;
     public Result index() {
+        return Results.html().template("views/AcesUp/startPage.html");
+    }
+    public Result mainIndex() {
+        Game.updateGameMode();
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
     }
-    
-    public Result gameGet(){
-        final JDialog dialog = new JDialog();
-        dialog.setAlwaysOnTop(true);
-        JOptionPane.showMessageDialog(dialog, "Welcome to Aces up!\nHit OK to start", "Aces Up", JOptionPane.PLAIN_MESSAGE);
-        Game g = new Game();
-        g.dealFour();
 
-        return Results.json().render(g);
+    public static Game newGame;
+
+    public Result gameGet(){
+        newGame = new Game();
+        newGame.dealFour();
+
+        return Results.json().render(newGame);
     }
+
+    public Result grabGame(){
+        return Results.json().render(newGame);
+    }
+
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
@@ -61,4 +56,8 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
+    public Result gameMode(Context context, @PathParam("modeNumber") int gameModeNumber, Game g){
+        gameModeNum = gameModeNumber;
+        return Results.json().render(g);
+    }
 }

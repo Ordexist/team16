@@ -1,6 +1,7 @@
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 
+
 <body>
 <table>
     <tr>
@@ -85,30 +86,38 @@
               <label for="points">Current Score:</label>
               <p id="points"></p>
           </div>
+          <br />
+          <p id="errorMessage">Welcome to Ace's Up!</p>
           <button id="dealButton">Deal</button>
       </div>
 
 </table>
 
-
-
-<BR>
-<select id="from_col">
-    <option value="0">Column 1</option>
-    <option value="1">Column 2</option>
-    <option value="2">Column 3</option>
+<br/>
+<div id="moveUI">
+  <select id="from_col">
+      <option value="0">Column 1</option>
+      <option value="1">Column 2</option>
+      <option value="2">Column 3</option>
     <option value="3">Column 4</option>
-</select>
-To:
-<select id="to_col">
-    <option value="0">Column 1</option>
-    <option value="1">Column 2</option>
-    <option value="2">Column 3</option>
-    <option value="3">Column 4</option>
-</select>
+  </select>
+    To:
+    <select id="to_col">
+      <option value="0">Column 1</option>
+      <option value="1">Column 2</option>
+      <option value="2">Column 3</option>
+      <option value="3">Column 4</option>
+    </select>
 
-<button id="moveButton">Move</button>
+  <button id="moveButton">Move</button>
+</div>
 
+
+
+<div id="refreshButtons">
+  <button id="newGame">New Game</button>
+  <button id="changeGameMode">Change Game Mode</button>
+</div>
 <script>
 
 var game;
@@ -116,33 +125,51 @@ var game;
 function display(game) {
 console.log(game);
 
+setTimeout(function() {
+  if (game.wonGame == 1){
+    document.getElementById("errorMessage").innerHTML = "You Won!!";
+  }
+}, 75);
+
+
+function cardInfo(info, val){
+  if(val.value == 11){
+    return $( info ).html("J " + val.suit);
+  } else if(val.value == 12){
+    return $( info ).html("Q " + val.suit );
+  } else if(val.value == 13){
+    return $( info ).html("K " + val.suit );
+  } else if(val.value == 14){
+    return $( info ).html("A " + val.suit);
+  } else {
+    return $( info ).html(val.value + " " + val.suit);
+  }
+}
+
 $( '.columnOfCards .cardLocation' ).html("");
-
-    $.each(game.cols[0].cards, function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + val.suit);
+  $.each(game.cols[0].cards, function( key, val ) {
+      cardInfo('#c0 .l'+key, val);
     });
-
  $.each(game.cols[1].cards, function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + val.suit);
+      cardInfo('#c1 .l'+key, val);
     });
-
  $.each(game.cols[2].cards, function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + val.suit);
+      cardInfo('#c2 .l'+key, val);
     });
-
  $.each(game.cols[3].cards, function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + val.suit);
+      cardInfo('#c3 .l'+key, val);
     });
 
  document.getElementById("points").innerHTML = game.points;
 }
 
-// Calls ApplicationController.gameGet()
+//Calls ApplicationController.grabGame()
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
 game = data;
 });
 
+var count = 0;
 
 $("#dealButton").click(function(){
 $.ajax({
@@ -155,8 +182,13 @@ $.ajax({
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
+count++;
+if(count < 13){
+  document.getElementById("errorMessage").innerHTML = "Dealt Cards";
+} else {
+  document.getElementById("errorMessage").innerHTML = "Out of Cards!";
+}
 });
-
 
 function removeCard(colNumber){
 $.ajax({
@@ -169,21 +201,35 @@ display(data);},
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
-
 }
 
+function removedNotice(){
+  setTimeout(function() {
+    if (game.canRemove == 1){
+      document.getElementById("errorMessage").innerHTML = "Removed Card";
+    } else if (game.canRemove == 0){
+      document.getElementById("errorMessage").innerHTML = "Can't remove card!";
+    } else if (game.canRemove == 2){
+      document.getElementById("errorMessage").innerHTML = "Column is Empty!";
+    }
+  }, 75);
+}
 
 $("#Remove1").click(function(){
-    removeCard(0);
+  removeCard(0);
+  removedNotice();
 });
 $("#Remove2").click(function(){
-    removeCard(1);
+  removeCard(1);
+  removedNotice();
 });
 $("#Remove3").click(function(){
-    removeCard(2);
+  removeCard(2);
+  removedNotice();
 });
 $("#Remove4").click(function(){
-    removeCard(3);
+  removeCard(3);
+  removedNotice();
 });
 
 
@@ -200,12 +246,31 @@ $.ajax({
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
+
+setTimeout(function() {
+  if(game.canMove == 0){
+      document.getElementById("errorMessage").innerHTML = "Can't move card there!";
+  } else if(game.canMove == 1){
+      document.getElementById("errorMessage").innerHTML = "Moved Card";
+  } else if(game.canMove == 2){
+      document.getElementById("errorMessage").innerHTML = "You can only move Aces!";
+  } else if(game.canMove == 3){
+      document.getElementById("errorMessage").innerHTML = "Can't move from an empty column!";
+  }
+}, 75);
 });
 
 
+$("#newGame").click(function(){
+    location.reload();
+});
+
+$("#changeGameMode").click(function(){
+    window.open('/','_self',false);
+});
+
+
+
 </script>
-
-
-
 </body>
 </html>

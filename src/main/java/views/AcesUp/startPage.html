@@ -1,0 +1,87 @@
+<link href="/assets/css/AcesUp.css" rel="stylesheet">
+<script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+
+
+<body>
+  <br/><br/><br/>
+  <h1>Please choose a game mode</h1>
+<div id="tw">
+  <button id="OptionButtonR">Regular</button>
+  <button id="OptionButtonA">Aces</button>
+  <button id="OptionButtonS">Spanish</button>
+</div>
+
+<script>
+
+var GameMode;
+
+function getGameMode(){
+  return GameMode;
+}
+
+
+var game;
+
+function display(game) {
+console.log(game);
+}
+
+//Calls ApplicationController.gameGet()
+$.getJSON("http://localhost:8080/game", function( data ) {
+display(data);
+game = data;
+});
+
+
+$("#OptionButtonR").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/gameMode/0",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  });
+setTimeout(function() {
+  window.open('AcesUp.flt.html','_self',false);
+}, 75);
+});
+
+
+$("#OptionButtonA").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/gameMode/1",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  });
+setTimeout(function() {
+  window.open('AcesUp.flt.html','_self',false);
+}, 75);
+});
+
+
+$("#OptionButtonS").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/gameMode/2",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  });
+//                                                      --------------------------------------------------
+//window.open('AcesUp.flt.html','_self',false);         ---------- UN-COMMENT ONCE IMPLIMENTED!! ---------
+//                                                      --------------------------------------------------
+});
+
+</script>
+</body>

@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 public class Deck {
     public java.util.List<Card> cards = new ArrayList<>();
     public int size = 52;
