@@ -76,10 +76,6 @@ div#mainHead{
   text-decoration: none;
 }
 
-#dealButton:hover {
-  background: #fc3c3c;
-  text-decoration: none;
-}
 
 #from_col, #to_col{
   position:relative;
@@ -99,10 +95,6 @@ div#mainHead{
   font-family: Arial;
 }
 
-#from_col:hover, #to_col:hover{
-  background: #fc3c3c;
-  text-decoration: none;
-}
 
 #Remove1, #Remove2, #remove3, #remove4{
   position:relative;
@@ -225,7 +217,10 @@ div#refreshButtons{
   text-decoration: none;
 }
 
-#Remove1:hover, #Remove2:hover, #remove3:hover, #remove4:hover, #moveButton:hover{
+#Remove1:hover, #Remove2:hover, #remove3:hover, #remove4:hover,
+#moveButton:hover, #from_col:hover, #to_col:hover, #dealButton:hover,
+#changeGameMode:hover, #newGame:hover, #OptionButtonA:hover, #OptionButtonR:hover,
+#OptionButtonS:hover{
   background: #fc3c3c;
   text-decoration: none;
 }
