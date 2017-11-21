@@ -267,8 +267,11 @@ td{
 }
 
 .cardLocation:hover{
-  z-index: 9999;
-  zoom: 105%;
+  margin-top: -15px;
+  transition: margin-left .5s;
+  -moz-transition: margin-left .5s; /* Firefox 4 */
+  -webkit-transition: margin-left .5s; /* Safari and Chrome */
+  -o-transition: margin-left .5s;
 }
 
 #points{
