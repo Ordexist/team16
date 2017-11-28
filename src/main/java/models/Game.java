@@ -74,7 +74,7 @@ public class Game {
   }
 
     public void move(int columnFrom, int columnTo) {
-      if(gameModeSet == 0){
+      if(gameModeSet == 0 || gameModeSet == 2){
         // remove the top card from the columnFrom column, add it to the columnTo column
         if(cols.get(columnFrom).hasCards() == true) {
             Card tempCard = cols.get(columnFrom).topCard();
