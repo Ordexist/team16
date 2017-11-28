@@ -133,16 +133,21 @@ setTimeout(function() {
 
 
 function cardInfo(info, val){
-  if(val.value == 11){
-    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
-  } else if(val.value == 12){
-    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
-  } else if(val.value == 13){
-    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
-  } else if(val.value == 14){
-    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
-  } else {
-    return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
+  if(val.img != ""){
+    if(val.value == 11){
+        return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
+    } else if(val.value == 12){
+        return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
+    } else if(val.value == 13){
+        return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
+    } else if(val.value == 14){
+        return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
+    } else {
+        return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
+    }
+  }
+  else{                                                              //this statement can be removed after spanish cards get images
+    return $(info).html(val.value + " " + val.suit);
   }
 }
 

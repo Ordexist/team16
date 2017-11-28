@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 
 public class Game {
-    public Deck deck = new Deck();
+    public Deck deck;
 
     public java.util.List<Column> cols = new ArrayList<>(4);
     public int points = 0;
@@ -19,17 +19,22 @@ public class Game {
     public int canMove;   //0 = Cant move, 1 = Can Move, 2 = Only Aces can move, 3 = Column empty
     public int wonGame = 0;
     public static int gameModeSet; /*GameModes -- 0-Regular, 1-Aces, 2-Spanish, 3-NoSelection*/
-
+    public static void updateGameMode() {
+      gameModeSet = ApplicationController.gameModeNum;
+    }
 
     public Game(){
         cols.add(new Column());
         cols.add(new Column());
         cols.add(new Column());
         cols.add(new Column());
-    }
 
-    public static void updateGameMode() {
-      gameModeSet = ApplicationController.gameModeNum;
+        if(gameModeSet == 0 || gameModeSet == 1){
+            deck = new RegularDeck();
+        }
+        else if(gameModeSet == 2){
+            deck = new SpanishDeck();
+        }
     }
 
     public void dealFour() {
