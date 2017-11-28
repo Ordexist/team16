@@ -112,12 +112,12 @@
   <button id="moveButton">Move</button>
 </div>
 
-
-
 <div id="refreshButtons">
   <button id="newGame">New Game</button>
   <button id="changeGameMode">Change Game Mode</button>
 </div>
+
+
 <script>
 
 var game;
@@ -135,9 +135,6 @@ setTimeout(function() {
 function cardInfo(info, val){
   if(val.img != ""){
     return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
-  }
-  else{                                                              //this statement can be removed after spanish cards get images
-    return $(info).html(val.value + " " + val.suit);
   }
 }
 

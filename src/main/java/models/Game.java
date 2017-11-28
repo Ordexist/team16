@@ -3,6 +3,7 @@ package models;
 import controllers.ApplicationController;
 import models.Deck;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import java.util.Collections;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -28,6 +29,14 @@ public class Game {
         cols.add(new Column());
         cols.add(new Column());
         cols.add(new Column());
+
+        try {
+            TimeUnit.MILLISECONDS.sleep(100);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+        updateGameMode();
 
         if(gameModeSet == 0 || gameModeSet == 1){
             deck = new RegularDeck();
