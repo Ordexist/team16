@@ -82,6 +82,18 @@ public class testGame {
         g.move(0,2);
         assertEquals(0,g.cols.get(0).size());
         assertEquals(1,g.cols.get(2).size());
+
+        ApplicationController.gameModeNum = 1;
+        Game e = new Game();
+        e.customDeal(0,3,6,39);
+        e.remove(2);
+        assertEquals(0,e.cols.get(2).size());
+        e.move(0,2);
+        assertEquals(1,e.cols.get(0).size());
+        assertEquals(0,e.cols.get(2).size());
+        e.move(3,2);
+        assertEquals(0,e.cols.get(3).size());
+        assertEquals(1,e.cols.get(2).size());
     }
 
 }
