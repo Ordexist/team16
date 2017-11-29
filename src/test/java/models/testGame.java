@@ -80,7 +80,7 @@ public class testGame {
         g.remove(2);
         assertEquals(0,g.cols.get(2).size());
         g.move(0,2);
-        assertEquals(0,g.cols.get(0).size());
+        assertEquals(0,g.cols.get(0).size());  //TEST HAS ERROR HERE. EXPECTS 0, ACTUALLY GETS 1 FOR SOME REASON
         assertEquals(1,g.cols.get(2).size());
 
         ApplicationController.gameModeNum = 1;
