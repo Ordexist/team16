@@ -28,7 +28,7 @@ import static org.junit.Assert.assertThat;
 
 public class ApiControllerDocTesterTest extends NinjaDocTester {
 
-    String URL_INDEX = "/";
+    String URL_INDEX = "/AcesUp.flt.html";
 
     @Test
     public void testAcesUp() {
