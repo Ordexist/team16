@@ -24,11 +24,15 @@ public class Column {
 
     public void addCard(Card card) {
         cards.add(card);
-        size++;
+        size = size + 1;
     }
 
     public void removeCard() {
-        size--;
+        size = size - 1;
         cards.remove(size);
+    }
+
+    public int size() {
+        return size;
     }
 }

@@ -30,12 +30,6 @@ public class Game {
         cols.add(new Column());
         cols.add(new Column());
 
-        try {
-            TimeUnit.MILLISECONDS.sleep(100);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-
         updateGameMode();
 
         if(gameModeSet == 0 || gameModeSet == 1){
@@ -46,6 +40,10 @@ public class Game {
         }
     }
 
+    public void shuffle(){
+        deck.shuffle();
+    }
+
     public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
         if(deck.size >= 4) {
@@ -53,6 +51,18 @@ public class Game {
                 cols.get(i).addCard(deck.topCard());
             }
         }
+    }
+
+    //customDeal to setup game for testing purposes (i.e. shuffled cards are random and hard to test)
+    public void customDeal(int c1, int c2, int c3, int c4) {
+        this.cols.get(0).cards.add(deck.cards.get(c1));
+        deck.cards.remove(c1);
+        this.cols.get(1).cards.add(deck.cards.get(c2));
+        deck.cards.remove(c2);
+        this.cols.get(2).cards.add(deck.cards.get(c3));
+        deck.cards.remove(c3);
+        this.cols.get(3).cards.add(deck.cards.get(c4));
+        deck.cards.remove(c4);
     }
 
     public void remove(int columnNumber) {

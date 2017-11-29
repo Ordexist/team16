@@ -13,6 +13,5 @@ public class SpanishDeck extends Deck {
         cards.add(new SpanishCard(2, Suit.Joker));
 
         this.size = 50;
-        this.shuffle();
     }
 }
