@@ -125,13 +125,6 @@ var game;
 function display(game) {
 console.log(game);
 
-setTimeout(function() {
-  if (game.wonGame == 1){
-    document.getElementById("errorMessage").innerHTML = "You Won!!";
-  }
-}, 75);
-
-
 function cardInfo(info, val){
   if(val.img != ""){
     return $( info ).html("<img src=" + val.img + " height='160' width='110'>");
@@ -182,6 +175,20 @@ if(count < 13){
 }
 });
 
+function removedNotice(){
+   if(game.wonGame == 1){
+    document.getElementById("errorMessage").innerHTML = "You Won!!";
+   } else {
+     if (game.canRemove == 1){
+         document.getElementById("errorMessage").innerHTML = "Removed Card";
+       } else if (game.canRemove == 0){
+         document.getElementById("errorMessage").innerHTML = "Can't remove card!";
+       } else if (game.canRemove == 2){
+         document.getElementById("errorMessage").innerHTML = "Column is Empty!";
+       }
+   }
+ }
+
 function removeCard(colNumber){
 $.ajax({
 type: "POST",
@@ -189,41 +196,38 @@ url: "/removeCard/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
-display(data);},
+display(data);
+removedNotice();},
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
 }
 
-function removedNotice(){
-  setTimeout(function() {
-    if (game.canRemove == 1){
-      document.getElementById("errorMessage").innerHTML = "Removed Card";
-    } else if (game.canRemove == 0){
-      document.getElementById("errorMessage").innerHTML = "Can't remove card!";
-    } else if (game.canRemove == 2){
-      document.getElementById("errorMessage").innerHTML = "Column is Empty!";
-    }
-  }, 75);
-}
 
 $("#Remove1").click(function(){
   removeCard(0);
-  removedNotice();
 });
 $("#Remove2").click(function(){
   removeCard(1);
-  removedNotice();
 });
 $("#Remove3").click(function(){
   removeCard(2);
-  removedNotice();
 });
 $("#Remove4").click(function(){
   removeCard(3);
-  removedNotice();
 });
 
+function movedNotice(){
+   if(game.canMove == 0){
+       document.getElementById("errorMessage").innerHTML = "Can't move card there!";
+   } else if(game.canMove == 1){
+       document.getElementById("errorMessage").innerHTML = "Moved Card";
+   } else if(game.canMove == 2){
+       document.getElementById("errorMessage").innerHTML = "You can only move Aces!";
+   } else if(game.canMove == 3){
+       document.getElementById("errorMessage").innerHTML = "Can't move from an empty column!";
+   }
+ }
 
 $("#moveButton").click(function(){
 var colFrom = $("#from_col").val();
@@ -234,22 +238,11 @@ $.ajax({
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
-        display(data);},
+        display(data);
+        movedNotice();},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
-
-setTimeout(function() {
-  if(game.canMove == 0){
-      document.getElementById("errorMessage").innerHTML = "Can't move card there!";
-  } else if(game.canMove == 1){
-      document.getElementById("errorMessage").innerHTML = "Moved Card";
-  } else if(game.canMove == 2){
-      document.getElementById("errorMessage").innerHTML = "You can only move Aces!";
-  } else if(game.canMove == 3){
-      document.getElementById("errorMessage").innerHTML = "Can't move from an empty column!";
-  }
-}, 75);
 });
 
 
