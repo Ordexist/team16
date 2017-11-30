@@ -86,8 +86,11 @@ public class Game {
       if(canRemove == 1) {           //remove card if flag is set
           cols.get(columnNumber).removeCard();
           points++;
-          if(points >= 48){
+          if(points >= 48 && (gameModeSet == 0 || gameModeSet == 1)){            //in regular modes, 48 points is required
             wonGame = 1;
+          }
+          else if(points >= 46 && gameModeSet == 2){                           //in spanish mode, 46 points is required
+              wonGame = 1;
           }
       }
   }
