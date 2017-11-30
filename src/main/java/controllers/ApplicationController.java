@@ -29,6 +29,7 @@ public class ApplicationController {
 
     public Result gameGet(){
         newGame = new Game();
+        newGame.deck.shuffle();
         newGame.dealFour();
 
         return Results.json().render(newGame);

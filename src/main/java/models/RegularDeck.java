@@ -10,6 +10,5 @@ public class RegularDeck extends Deck{
         }
 
         this.size = 52;
-        this.shuffle();
     }
 }

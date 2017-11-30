@@ -23,12 +23,16 @@ public class Column {
     }
 
     public void addCard(Card card) {
+        size = size + 1;
         cards.add(card);
-        size++;
     }
 
     public void removeCard() {
-        size--;
+        size = size - 1;
         cards.remove(size);
+    }
+
+    public int size() {
+        return size;
     }
 }
