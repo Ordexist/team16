@@ -50,6 +50,10 @@ public class Game {
             for (int i = 0; i < 4; i++) {
                 cols.get(i).addCard(deck.topCard());
             }
+        } else if(deck.size == 2) {
+            for (int i = 0; i < 2; i++) {
+                cols.get(i).addCard(deck.topCard());
+            }
         }
     }
 
