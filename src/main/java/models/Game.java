@@ -55,13 +55,13 @@ public class Game {
 
     //customDeal to setup game for testing purposes (i.e. shuffled cards are random and hard to test)
     public void customDeal(int c1, int c2, int c3, int c4) {
-        this.cols.get(0).cards.add(deck.cards.get(c1));
+        this.cols.get(0).addCard(deck.cards.get(c1));
         deck.cards.remove(c1);
-        this.cols.get(1).cards.add(deck.cards.get(c2));
+        this.cols.get(1).addCard(deck.cards.get(c2));
         deck.cards.remove(c2);
-        this.cols.get(2).cards.add(deck.cards.get(c3));
+        this.cols.get(2).addCard(deck.cards.get(c3));
         deck.cards.remove(c3);
-        this.cols.get(3).cards.add(deck.cards.get(c4));
+        this.cols.get(3).addCard(deck.cards.get(c4));
         deck.cards.remove(c4);
     }
 

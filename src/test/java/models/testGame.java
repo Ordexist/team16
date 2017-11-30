@@ -85,15 +85,18 @@ public class testGame {
 
         ApplicationController.gameModeNum = 1;
         Game e = new Game();
-        e.customDeal(0,3,6,39);
+        e.customDeal(0,3,6,37);
         e.remove(2);
         assertEquals(0,e.cols.get(2).size());
-        e.move(0,2);
-        assertEquals(1,e.cols.get(0).size());
-        assertEquals(0,e.cols.get(2).size());
-        e.move(3,2);
-        assertEquals(0,e.cols.get(3).size());
-        assertEquals(1,e.cols.get(2).size());
+        e.move(0,2);                 //can't move this card because it's not an ace
+        assertEquals(1,e.cols.get(0).size());    //card was not moved
+        assertEquals(0,e.cols.get(2).size());    //column did not get a new card
+
+        /*                                           This test is invalid because it assumes column 0 is empty
+        e.move(3,0);
+        assertEquals(1,e.cols.get(3).size());   //can't move this card because it's not an ace
+        assertEquals(0,e.cols.get(0).size());   //no card was moved here
+        */
     }
 
 }
