@@ -91,12 +91,45 @@ public class testGame {
         e.move(0,2);                 //can't move this card because it's not an ace
         assertEquals(1,e.cols.get(0).size());    //card was not moved
         assertEquals(0,e.cols.get(2).size());    //column did not get a new card
-
-        /*                                           This test is invalid because it assumes column 0 is empty
-        e.move(3,0);
-        assertEquals(1,e.cols.get(3).size());   //can't move this card because it's not an ace
-        assertEquals(0,e.cols.get(0).size());   //no card was moved here
-        */
     }
 
+    @Test
+    public void testCanRemove(){
+        ApplicationController.gameModeNum = 0;
+        Game g = new Game();
+        g.customDeal(0, 3, 6, 9);
+        g.remove(0);
+        assertEquals(1,g.canRemove);      //remove from column 0 successful
+        g.remove(0);
+        assertEquals(2,g.canRemove);      //remove from column 0 unsuccessful, column is empty
+        g.remove(3);
+        assertEquals(0,g.canRemove);      //remove from column 3 unsuccessful, no higher card of same suit
+    }
+
+    @Test
+    public void testCanMove(){
+        ApplicationController.gameModeNum = 0;
+        Game g = new Game();
+        g.customDeal(0, 3, 6, 9);
+        g.remove(0);
+        g.move(1, 0);
+        assertEquals(1,g.canMove);         //move is successful to empty column
+        g.move(1, 0);
+        assertEquals(3,g.canMove);         //move is unsuccessful, column 1 is empty
+        g.move(0, 2);
+        assertEquals(0,g.canMove);         //move is unsuccessful, column 2 is not empty
+
+        ApplicationController.gameModeNum = 1;     //aces only can be moved
+        Game e = new Game();
+        e.customDeal(0, 3, 6, 47);
+        e.remove(0);
+        e.move(1, 0);
+        assertEquals(2,e.canMove);         //move is unsuccessful, no ace in column 1
+        e.move(0, 1);
+        assertEquals(3,e.canMove);         //move is unsuccessful, column 0 is empty
+        e.move(3, 2);
+        assertEquals(0,e.canMove);         //move is unsuccessful, column 2 is not empty
+        e.move(3, 0);
+        assertEquals(1,e.canMove);         //move is successful, ace moved from column 3 to 0
+    }
 }

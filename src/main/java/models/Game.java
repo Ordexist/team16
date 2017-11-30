@@ -109,7 +109,7 @@ public class Game {
                 cols.get(columnFrom).removeCard();
                 cols.get(columnTo).addCard(tempCard);
                 canMove = 1;
-            } else {                                           //moving card that is not an ace, error
+            } else {                                          //moving card to non-empty column
                 canMove = 0;
             }
         }
