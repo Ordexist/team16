@@ -104,6 +104,27 @@ public class testGame {
         assertEquals(2,g.canRemove);      //remove from column 0 unsuccessful, column is empty
         g.remove(3);
         assertEquals(0,g.canRemove);      //remove from column 3 unsuccessful, no higher card of same suit
+        // set game mode to 2 and run test for remove again
+        ApplicationController.gameModeNum = 2;
+        Game e = new Game();
+        e.customDeal(0, 3, 6, 9);
+        e.remove(0);
+        assertEquals(1,e.canRemove);      //remove from column 0 successful
+        e.remove(0);
+        assertEquals(2,e.canRemove);      //remove from column 0 unsuccessful, column is empty
+        e.remove(3);
+        assertEquals(0,e.canRemove);      //remove from column 3 unsuccessful, no higher card of same suit
+        ApplicationController.gameModeNum = 2;
+        Game f = new Game();
+        f.customDealJokers();
+        f.remove(0);
+        assertEquals(3, f.canRemove);     //remove from column 0 unsuccessful (joker in place)
+        f.remove(1);
+        assertEquals(3, f.canRemove);     //remove from column 1 unsuccessful (joker in place)
+        f.remove(2);
+        assertEquals(1, f.canRemove);     //remove from column 2 successful (higher number in play)
+        f.remove(3);
+        assertEquals(1, f.canRemove);     //remove from column 3 successful (joker on field)
     }
 
     @Test
