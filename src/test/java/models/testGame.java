@@ -104,6 +104,38 @@ public class testGame {
         assertEquals(2,g.canRemove);      //remove from column 0 unsuccessful, column is empty
         g.remove(3);
         assertEquals(0,g.canRemove);      //remove from column 3 unsuccessful, no higher card of same suit
+
+        Game h = new Game();
+        h.customDeal(49, 3, 6, 0);
+        h.remove(0);
+        assertEquals(4,h.canRemove);      //remove from column 3 unsuccessful, it was an ace
+
+        // set game mode to 2 and run test for remove again
+        ApplicationController.gameModeNum = 2;
+        Game e = new Game();
+        e.customDeal(0, 3, 6, 9);
+        e.remove(0);
+        assertEquals(1,e.canRemove);      //remove from column 0 successful
+        e.remove(0);
+        assertEquals(2,e.canRemove);      //remove from column 0 unsuccessful, column is empty
+        e.remove(3);
+        assertEquals(0,e.canRemove);      //remove from column 3 unsuccessful, no higher card of same suit
+
+        Game f = new Game();
+        f.customDealJokers();
+        f.remove(0);
+        assertEquals(3, f.canRemove);     //remove from column 0 unsuccessful (joker in place)
+        f.remove(1);
+        assertEquals(3, f.canRemove);     //remove from column 1 unsuccessful (joker in place)
+        f.remove(2);
+        assertEquals(1, f.canRemove);     //remove from column 2 successful (higher number in play)
+        f.remove(3);
+        assertEquals(1, f.canRemove);     //remove from column 3 successful (joker on field)
+
+        Game i = new Game();
+        i.customDealJokersAndAces();
+        i.remove(1);
+        assertEquals(4, i.canRemove);
     }
 
     @Test
@@ -131,5 +163,22 @@ public class testGame {
         assertEquals(0,e.canMove);         //move is unsuccessful, column 2 is not empty
         e.move(3, 0);
         assertEquals(1,e.canMove);         //move is successful, ace moved from column 3 to 0
+    }
+
+    @Test
+    public void testWinScenario(){
+        ApplicationController.gameModeNum = 0;
+        Game g = new Game();
+        g.points = 47;
+        g.customDeal(0, 3, 6, 9);
+        g.remove(0); // this remove will be successful
+        assertEquals(48,g.points); // points will be 48 at this point due to remove
+
+        ApplicationController.gameModeNum = 2;
+        Game e = new Game();
+        e.points = 45;
+        e.customDealJokers();
+        e.remove(3); // this remove will be successful
+        assertEquals(46,e.points); // points will be 46 at this point due to remove
     }
 }
