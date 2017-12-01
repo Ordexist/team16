@@ -16,7 +16,7 @@ public class Game {
 
     public java.util.List<Column> cols = new ArrayList<>(4);
     public int points = 0;
-    public int canRemove; //0 = Cant remove, 1 = Can Remove, 2 = Column Empty, 3 = trying to remove joker
+    public int canRemove; //0 = Cant remove, 1 = Can Remove, 2 = Column Empty, 3 = trying to remove joker, 4 = trying to remove ace
     public int canMove;   //0 = Cant move, 1 = Can Move, 2 = Only Aces can move, 3 = Column empty
     public int wonGame = 0;
     public int removedJoker = 0; //used for the case where there are 2 jokers in play
@@ -39,10 +39,6 @@ public class Game {
         else if(gameModeSet == 2) {
             deck = new SpanishDeck();
         }
-    }
-
-    public void shuffle(){
-        deck.shuffle();
     }
 
     public void dealFour() {
@@ -76,6 +72,13 @@ public class Game {
         this.cols.get(2).addCard(new SpanishCard(2, Suit.Coin));
         this.cols.get(3).addCard(new SpanishCard(5, Suit.Coin));
     }
+    //deals a joker and an ace of coins and 2 other coin values for testing purposes
+    public void customDealJokersAndAces() {
+        this.cols.get(0).addCard(new SpanishCard(1, Suit.Joker));
+        this.cols.get(1).addCard(new SpanishCard(13, Suit.Coin));
+        this.cols.get(2).addCard(new SpanishCard(2, Suit.Coin));
+        this.cols.get(3).addCard(new SpanishCard(5, Suit.Coin));
+    }
 
 
     public void remove(int columnNumber) {
@@ -89,7 +92,10 @@ public class Game {
                     if (cols.get(i).hasCards()) {
                         Card cardToRemove = cols.get(columnNumber).topCard();
                         Card cardToCheck = cols.get(i).topCard();
-
+                        if(cardToRemove.getValue() == 14){
+                            canRemove = 4;
+                            break;
+                        }
                         if (i != columnNumber && cardToRemove.suit == cardToCheck.suit && cardToRemove.value < cardToCheck.value) {  //if a higher card with matching suit
                             canRemove = 1;                                        //set remove flag
                         }
@@ -109,6 +115,11 @@ public class Game {
                 if(checkJoker.suit.toString() == "Joker") {
                     //if it's a joker then you can't remove that card!
                     canRemove = 3; // mark as a joker
+                }
+                if(checkJoker.getValue() == 13){
+                    //if it's an ace value card then you can't remove it
+                    //even if there is a joker on the field of play!
+                    canRemove = 4;
                 }
                 //if not a joker, and column not empty
                 if(canRemove == 0) {

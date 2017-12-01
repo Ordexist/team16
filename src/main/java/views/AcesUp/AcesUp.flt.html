@@ -187,6 +187,8 @@ function removedNotice(){
          document.getElementById("errorMessage").innerHTML = "Column is Empty!";
        } else if (game.canRemove == 3){
          document.getElementById("errorMessage").innerHTML = "Can't remove joker!";
+       } else if (game.canRemove == 4){
+         document.getElementById("errorMessage").innerHTML = "Can't remove Ace!";
        }
    }
  }
