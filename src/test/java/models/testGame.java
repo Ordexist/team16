@@ -61,18 +61,6 @@ public class testGame {
         assertEquals(1,g.cols.get(1).size());
         assertEquals(1,g.cols.get(2).size());
         assertEquals(1,g.cols.get(3).size());
-
-        ApplicationController.gameModeNum = 2;
-        Game h = new Game();
-        for(int i = 0; i < 12; i++){
-            h.dealFour();
-        }
-        assertEquals(12, h.cols.get(0).size());
-        h.dealFour();
-        assertEquals(13, h.cols.get(0).size());
-        assertEquals(13, h.cols.get(1).size());
-        assertEquals(12, h.cols.get(2).size());
-        assertEquals(12, h.cols.get(3).size());
     }
 
     @Test
